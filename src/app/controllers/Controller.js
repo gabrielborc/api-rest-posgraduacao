@@ -24,6 +24,10 @@ class Controller {
     }
     
     findAll(req, res) {
+        if (req.query.hasOwnProperty('fields')) {
+            console.log('yes');
+        }
+
         res.json(this.mock);
     }
 

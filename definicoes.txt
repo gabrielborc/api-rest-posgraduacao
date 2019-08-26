@@ -1,0 +1,31 @@
+Consulta por data:
+    _between
+    _greater
+    _lesser
+
+Consulta por um conjuto de valores:
+    _in
+    _contains
+
+Ordenação
+    sort=(+/-)campo
+
+Filtras Campos
+    fields=
+
+Paginação:  
+    limit=30&offset=31
+
+    {
+    	"meta": {
+            "server": "",
+            "offset": 31,
+            "limit": 30,
+            "recordCount": 30
+        },
+        "records": [
+            { "id": 31 },
+            ....
+            { "id": 60 }
+        ]
+    }

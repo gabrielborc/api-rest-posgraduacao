@@ -13,8 +13,8 @@ class Utils {
     }
 
     lastId(mock) {
-       let id = this.newId(mock);
-      return --id; 
+        let id = this.newId(mock);
+        return --id; 
     }
     
 }
