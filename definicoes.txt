@@ -7,10 +7,10 @@ Consulta por um conjuto de valores: - Feito
     _in
     _contains
 
-Ordenação
+Ordenação: - Feito
     sort=(+/-)campo
 
-Filtras Campos - Feito
+Filtras Campos: - Feito
     fields=
 
 Paginação:  

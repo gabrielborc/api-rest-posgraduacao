@@ -49,6 +49,26 @@ class Utils {
         return mock.filter((item) => values.indexOf('' + item[field]) !== -1);        
     }
 
+    sort(field, mock) {
+        let orderType = field.charAt(0);
+
+        if (/\+|\-/.test(orderType))
+            field = field.substr(1, field.length);
+        
+        mock.sort((a, b) => {
+            a = ('' + a[field]).toLowerCase();
+            b = ('' + b[field]).toLowerCase();
+            
+            if (orderType == '-') {
+                return a < b ? 1 : -1;
+            } else {
+                return a > b ? 1 : -1;
+            }           
+        });
+        
+        return mock;
+    }
+
     filterQuery(params, mock) {
         let that = this;
 
@@ -57,8 +77,12 @@ class Utils {
                 mock = that.filterContains(param, params[param], mock);
             } else if (/_in/.test(param)) {
                 mock = that.filterIn(param, params[param], mock);
-            }
+            } 
         });
+
+        if (params.hasOwnProperty('sort')) {
+            mock = this.sort(params.sort, mock);
+        }
 
         if (params.hasOwnProperty('fields')) {
             mock = this.filterFields(params.fields, mock);
