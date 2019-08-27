@@ -69,6 +69,21 @@ class Utils {
         return mock;
     }
 
+    paginate(params, mock) {
+        let limit = parseInt(params.limit) || 5;
+        let offset = parseInt(params.offset) || 0;
+        let mockPaginate = [ ...mock ].slice(offset, limit);
+
+        return {
+            "meta": {
+                "offset": offset,
+                "limit": limit,
+                "recordCount": mockPaginate.length
+            },
+            "records": mockPaginate
+        }
+    }
+
     filterQuery(params, mock) {
         let that = this;
 

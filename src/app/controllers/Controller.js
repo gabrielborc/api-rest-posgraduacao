@@ -25,8 +25,9 @@ class Controller {
     }
     
     findAll(req, res) {
-        let mock = Utils.filterQuery(req.query, this.mock);
-        res.json(mock);
+        let mock = Utils.filterQuery(req.query, this.mock)
+        
+        res.json(Utils.paginate(req.query, mock));
     }
 
     create(req, res) {
