@@ -10,7 +10,7 @@ Consulta por um conjuto de valores:
 Ordenação
     sort=(+/-)campo
 
-Filtras Campos
+Filtras Campos - Feito
     fields=
 
 Paginação:  

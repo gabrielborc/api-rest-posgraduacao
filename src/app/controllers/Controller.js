@@ -17,6 +17,7 @@ class Controller {
         });
         
         if (itemMock.length > 0) {
+            itemMock = Utils.filterQuery(req.query, itemMock);
             res.json(itemMock[0]);
         } else { 
             res.status(404).json({});
@@ -24,11 +25,8 @@ class Controller {
     }
     
     findAll(req, res) {
-        if (req.query.hasOwnProperty('fields')) {
-            console.log('yes');
-        }
-
-        res.json(this.mock);
+        let mock = Utils.filterQuery(req.query, this.mock);
+        res.json(mock);
     }
 
     create(req, res) {
