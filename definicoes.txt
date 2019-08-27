@@ -3,7 +3,7 @@ Consulta por data:
     _greater
     _lesser
 
-Consulta por um conjuto de valores:
+Consulta por um conjuto de valores: - Feito
     _in
     _contains
 
