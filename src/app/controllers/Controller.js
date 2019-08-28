@@ -10,9 +10,10 @@ class Controller {
     }
 
     find(req, res) {
+        let mock = req.mock || this.mock;
         let id = parseInt(req.params.id);
-
-        let itemMock = this.mock.filter((item) => {
+        
+        let itemMock = mock.filter((item) => {
             return id === item.id;
         });
         
@@ -25,7 +26,8 @@ class Controller {
     }
     
     findAll(req, res) {
-        let mock = Utils.filterQuery(req.query, this.mock)
+        let mock = req.mock || this.mock;
+        mock = Utils.filterQuery(req.query, mock);
         
         res.json(Utils.paginate(req.query, mock));
     }

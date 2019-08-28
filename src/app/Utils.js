@@ -105,6 +105,10 @@ class Utils {
 
         return mock;
     }
+
+    filterChild(params, mock) {
+        
+    }
     
 }
 

@@ -3,6 +3,9 @@ const Router = require('express');
 //Controllers
 const FilialController = require('./app/controllers/FilialController');
 const CargoController = require('./app/controllers/CargoController');
+const FuncionarioController = require('./app/controllers/FuncionarioController');
+const FuncionarioEnderecoController = require('./app/controllers/FuncionarioEnderecoController');
+const FuncionarioTelefoneController = require('./app/controllers/FuncionarioTelefoneController');
 const FabricanteController = require('./app/controllers/FabricanteController');
 const ModeloController = require('./app/controllers/ModeloController');
 const ClasseController = require('./app/controllers/ClasseController');
@@ -22,6 +25,24 @@ routes.get('/cargos/:id', CargoController.find.bind(CargoController));
 routes.post('/cargos', CargoController.create.bind(CargoController));
 routes.put('/cargos/:id', CargoController.update.bind(CargoController));
 routes.delete('/cargos/:id', CargoController.delete.bind(CargoController));
+
+routes.get('/funcionarios', FuncionarioController.findAll.bind(FuncionarioController));
+routes.get('/funcionarios/:id', FuncionarioController.find.bind(FuncionarioController));
+routes.post('/funcionarios', FuncionarioController.create.bind(FuncionarioController));
+routes.put('/funcionarios/:id', FuncionarioController.update.bind(FuncionarioController));
+routes.delete('/funcionarios/:id', FuncionarioController.delete.bind(FuncionarioController));
+
+routes.get('/funcionarios/:idFuncionario/enderecos', FuncionarioEnderecoController.findAll.bind(FuncionarioEnderecoController));
+routes.get('/funcionarios/:idFuncionario/enderecos/:id', FuncionarioEnderecoController.find.bind(FuncionarioEnderecoController));
+routes.post('/funcionarios/:idFuncionario/enderecos', FuncionarioEnderecoController.create.bind(FuncionarioEnderecoController));
+routes.put('/funcionarios/:idFuncionario/enderecos', FuncionarioEnderecoController.update.bind(FuncionarioEnderecoController));
+routes.delete('/funcionarios/:idFuncionario/enderecos', FuncionarioEnderecoController.delete.bind(FuncionarioEnderecoController));
+
+routes.get('/funcionarios/:idFuncionario/telefones', FuncionarioTelefoneController.findAll.bind(FuncionarioTelefoneController));
+routes.get('/funcionarios/:idFuncionario/telefones/:id', FuncionarioTelefoneController.find.bind(FuncionarioTelefoneController));
+routes.post('/funcionarios/:idFuncionario/telefones', FuncionarioTelefoneController.create.bind(FuncionarioTelefoneController));
+routes.put('/funcionarios/:idFuncionario/telefones', FuncionarioTelefoneController.update.bind(FuncionarioTelefoneController));
+routes.delete('/funcionarios/:idFuncionario/telefones', FuncionarioTelefoneController.delete.bind(FuncionarioTelefoneController));
 
 routes.get('/fabricantes', FabricanteController.findAll.bind(FabricanteController));
 routes.get('/fabricantes/:id', FabricanteController.find.bind(FabricanteController));
