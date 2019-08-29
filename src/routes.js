@@ -14,6 +14,7 @@ const ModeloController = require('./app/controllers/ModeloController');
 const ClasseController = require('./app/controllers/ClasseController');
 const TanqueController = require('./app/controllers/TanqueController');
 const CarroController = require('./app/controllers/CarroController');
+const TabelaPrecoController = require('./app/controllers/TabelaPrecoController');
 
 const routes = new Router();
 
@@ -94,5 +95,11 @@ routes.get('/carros/:id', CarroController.find.bind(CarroController));
 routes.post('/carros', CarroController.create.bind(CarroController));
 routes.put('/carros/:id', CarroController.update.bind(CarroController));
 routes.delete('/carros/:id', CarroController.delete.bind(CarroController));
+
+routes.get('/filiais/:idFilial/precos', TabelaPrecoController.findAll.bind(TabelaPrecoController));
+routes.get('/filiais/:idFilial/precos/:id', TabelaPrecoController.find.bind(TabelaPrecoController));
+routes.post('/filiais/:idFilial/precos', TabelaPrecoController.create.bind(TabelaPrecoController));
+routes.put('/filiais/:idFilial/precos/:id', TabelaPrecoController.update.bind(TabelaPrecoController));
+routes.delete('/filiais/:idFilial/precos/:id', TabelaPrecoController.delete.bind(TabelaPrecoController));
 
 module.exports = routes;
