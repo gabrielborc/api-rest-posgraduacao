@@ -15,6 +15,9 @@ const ClasseController = require('./app/controllers/ClasseController');
 const TanqueController = require('./app/controllers/TanqueController');
 const CarroController = require('./app/controllers/CarroController');
 const TabelaPrecoController = require('./app/controllers/TabelaPrecoController');
+const AluguelController = require('./app/controllers/AluguelController');
+const AluguelRetiradaController = require('./app/controllers/AluguelRetiradaController');
+const AluguelDevolucaoController = require('./app/controllers/AluguelDevolucaoController');
 
 const routes = new Router();
 
@@ -101,5 +104,21 @@ routes.get('/filiais/:idFilial/precos/:id', TabelaPrecoController.find.bind(Tabe
 routes.post('/filiais/:idFilial/precos', TabelaPrecoController.create.bind(TabelaPrecoController));
 routes.put('/filiais/:idFilial/precos/:id', TabelaPrecoController.update.bind(TabelaPrecoController));
 routes.delete('/filiais/:idFilial/precos/:id', TabelaPrecoController.delete.bind(TabelaPrecoController));
+
+routes.get('/alugueis', AluguelController.findAll.bind(AluguelController));
+routes.get('/alugueis/:id', AluguelController.find.bind(AluguelController));
+routes.post('/alugueis', AluguelController.create.bind(AluguelController));
+routes.put('/alugueis/:id', AluguelController.update.bind(AluguelController));
+routes.delete('/alugueis/:id', AluguelController.delete.bind(AluguelController));
+
+routes.get('/alugueis/:idAluguel/retiradas', AluguelRetiradaController.findAll.bind(AluguelRetiradaController));
+routes.post('/alugueis/:idAluguel/retiradas', AluguelRetiradaController.create.bind(AluguelRetiradaController));
+routes.put('/alugueis/:idAluguel/retiradas', AluguelRetiradaController.update.bind(AluguelRetiradaController));
+routes.delete('/alugueis/:idAluguel/retiradas', AluguelRetiradaController.delete.bind(AluguelRetiradaController));
+
+routes.get('/alugueis/:idAluguel/devolucoes', AluguelDevolucaoController.findAll.bind(AluguelDevolucaoController));
+routes.post('/alugueis/:idAluguel/devolucoes', AluguelDevolucaoController.create.bind(AluguelDevolucaoController));
+routes.put('/alugueis/:idAluguel/devolucoes', AluguelDevolucaoController.update.bind(AluguelDevolucaoController));
+routes.delete('/alugueis/:idAluguel/devolucoes', AluguelDevolucaoController.delete.bind(AluguelDevolucaoController));
 
 module.exports = routes;

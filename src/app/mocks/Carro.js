@@ -5,6 +5,7 @@ module.exports = [
         ano: 2010,
         placa: "QEW-9758",
         reservado: true,
+        cor: "Branco",
         classe: {
             id: 1,
             descricao: "Subcompactos"
@@ -27,6 +28,7 @@ module.exports = [
         ano: 2011,
         placa: "VBC-1363",
         reservado: true,
+        cor: "Preto",
         classe: {
             id: 1,
             descricao: "Subcompactos"
@@ -49,6 +51,7 @@ module.exports = [
         ano: 2013,
         placa: "UYT-6394",
         reservado: false,
+        cor: "Azul",
         classe: {
             id: 1,
             descricao: "Subcompactos"
@@ -73,6 +76,7 @@ module.exports = [
         ano: 2019,
         placa: "ABC-1234",
         reservado: true,
+        cor: "Prata",
         classe: {
             id: 2,
             descricao: "Compactos"
@@ -117,6 +121,7 @@ module.exports = [
         ano: 2013,
         placa: "QRW-7897",
         reservado: false,
+        cor: "Cinza",
         classe: {
             id: 2,
             descricao: "Compactos"
@@ -141,6 +146,7 @@ module.exports = [
         ano: 2019,
         placa: "TRG-9575",
         reservado: true,
+        cor: "Vermelho",
         classe: {
             id: 3,
             descricao: "Sedan"
@@ -163,6 +169,7 @@ module.exports = [
         ano: 2015,
         placa: "ZXC-9657",
         reservado: true,
+        cor: "Branco",
         classe: {
             id: 3,
             descricao: "Sedan"
@@ -185,6 +192,7 @@ module.exports = [
         ano: 2013,
         placa: "POL-4751",
         reservado: false,
+        cor: "Preto",
         classe: {
             id: 3,
             descricao: "Sedan"
@@ -209,6 +217,7 @@ module.exports = [
         ano: 2019,
         placa: "HGK-6357",
         reservado: true,
+        cor: "Verde",
         classe: {
             id: 4,
             descricao: "Luxo"
@@ -231,6 +240,7 @@ module.exports = [
         ano: 2015,
         placa: "IOP-7451",
         reservado: true,
+        cor: "Amarelo",
         classe: {
             id: 4,
             descricao: "Luxo"
@@ -253,6 +263,7 @@ module.exports = [
         ano: 2013,
         placa: "WET-1257",
         reservado: false,
+        cor: "Prata",
         classe: {
             id: 4,
             descricao: "Luxo"

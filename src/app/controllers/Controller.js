@@ -54,7 +54,7 @@ class Controller {
         if (id <= Utils.lastId(this.mock)) {
             res.status(204).json();
         } else {
-            res.status(404).json({});
+            res.status(404).json();
         }
     }
 }

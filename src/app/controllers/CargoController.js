@@ -1,6 +1,6 @@
 const Controller = require('./Controller');
 const Cargo = require('./../mocks/Cargo');
 
-class CargoControlle extends Controller {}
+class CargoController extends Controller {}
 
-module.exports = new CargoControlle(Cargo);
+module.exports = new CargoController(Cargo);
