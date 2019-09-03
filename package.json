@@ -19,9 +19,7 @@
   },
   "homepage": "https://github.com/gabrielborc/api-rest-posgraduacao#readme",
   "dependencies": {
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
+    "express": "^4.17.1",
     "nodemon": "^1.19.1"
   }
 }
