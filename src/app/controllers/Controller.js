@@ -33,8 +33,8 @@ class Controller {
     }
 
     create(req, res) {
-        let cargo = {id: Utils.newId(this.mock)};
-        res.status(201).json(Object.assign(cargo, req.body));
+        let mock = {id: Utils.newId(this.mock)};
+        res.status(201).json(Object.assign(mock, req.body));
     }
 
     update(req, res) {

@@ -1,6 +1,7 @@
 const Router = require('express');
 
 //Controllers
+const UsuarioController = require('./app/controllers/UsuarioController')
 const FilialController = require('./app/controllers/FilialController');
 const CargoController = require('./app/controllers/CargoController');
 const FuncionarioController = require('./app/controllers/FuncionarioController');
@@ -20,6 +21,12 @@ const AluguelRetiradaController = require('./app/controllers/AluguelRetiradaCont
 const AluguelDevolucaoController = require('./app/controllers/AluguelDevolucaoController');
 
 const routes = new Router();
+
+routes.get('/usuarios', UsuarioController.findAll.bind(UsuarioController));
+routes.get('/usuarios/:id', UsuarioController.find.bind(UsuarioController));
+routes.post('/usuarios', UsuarioController.create.bind(UsuarioController));
+routes.put('/usuarios/:id', UsuarioController.update.bind(UsuarioController));
+routes.delete('/usuarios/:id', UsuarioController.delete.bind(UsuarioController));
 
 routes.get('/filiais', FilialController.findAll.bind(FilialController));
 routes.get('/filiais/:id', FilialController.find.bind(FilialController));
