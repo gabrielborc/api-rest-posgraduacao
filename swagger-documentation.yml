@@ -514,7 +514,7 @@ paths:
     get:
       tags:
       - funcionarios
-      summary: Obtém um funcionário específico
+      summary: Obtém um endereço específico de um funcionário específico
       parameters:
         - in: path
           name: funcionarioId
@@ -532,13 +532,218 @@ paths:
             format: int32
       responses:
         200:
-          description: Operação concluída com sucesso. Então é retornado os dados do funcionário.
+          description: Operação concluída com sucesso. Então é retornado o endereço especificado do funcionário.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/FuncionarioEndereco"
         404:
           description: Recurso não encontrado. O funcionário e/ou endereço especificados não foram localizados.
+  /funcionarios/{funcionarioId}/telefones:
+    summary: Tudo sobre os telefones dos funcionários
+    get:
+      tags:
+      - funcionarios
+      summary: Obtem uma lista de telefones de um funcionário
+      parameters:
+        - in: path
+          name: funcionarioId
+          description: ID do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os telefones do funcionário.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FuncionarioTelefone"
+    post:
+      tags:
+      - funcionarios
+      summary: Cria um novo telefone para o usuário especificado
+      parameters:
+        - in: path
+          name: funcionarioId
+          description: ID do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoTelefoneFuncionario"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo telefone criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FuncionarioTelefone"
+  /funcionarios/{funcionarioId}/telefones/{id}:
+    summary: Detalhes de um telefone de um funcionário
+    get:
+      tags:
+      - funcionarios
+      summary: Obtém um telefone específico de um funcionário específico
+      parameters:
+        - in: path
+          name: funcionarioId
+          description: ID do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do telefone do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o telefone especificado do funcionário.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FuncionarioTelefone"
+        404:
+          description: Recurso não encontrado. O funcionário e/ou telefone especificados não foram localizados.
+  /clientes:
+    summary: Tudo sobre os clientes
+    get:
+      tags:
+      - clientes
+      summary: Obtem uma lista de clientes
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos clientes.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Cliente"
+    post:
+      tags:
+      - clientes
+      summary: Cria um novo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoCliente"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo cliente criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cliente"
+  /clientes/{id}:
+    summary: Detalhes de um cliente
+    get:
+      tags:
+      - clientes
+      summary: Obtém um cliente específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os dados do cliente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cliente"
+        404:
+          description: Recurso não encontrado. O cliente especificado não foi localizado.
+    put:
+      tags:
+      - clientes
+      summary: Atualiza um cliente específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os novos dados do cliente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cliente"
+        404:
+          description: Recurso não encontrado. O cliente especificado não foi localizado.
+    delete:
+      tags:
+      - clientes
+      summary: Exclui um cliente específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O cliente especificado não foi localizado.
 components:
   schemas:
     Usuario:
@@ -692,30 +897,44 @@ components:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoTelefoneFuncionario"
+    NovoTelefoneFuncionario:
+      properties:
         idFuncionario:
           type: integer
           format: int32
-          default: 1
+          example: 1
         ddd:
           type: string
+          example: "015"
         numero:
           type: string
+          example: "98484-9595"
         tipo:
           type: string
+          example: "comercial"
     Cliente:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoCliente"
+    NovoCliente:
+      properties:
         nome:
           type: string
+          example: "Laura Pereira"
         cnh:
           type: string
+          example: "089464895"
         tipoCnh:
           type: string
+          example: "AB"
     ClienteEndereco:
       type: object
       properties:
