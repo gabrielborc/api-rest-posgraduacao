@@ -16,9 +16,26 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Usuario"
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        default: 0
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Usuario"
     post:
       tags:
       - usuarios
