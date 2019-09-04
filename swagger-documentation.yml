@@ -31,7 +31,7 @@ paths:
                       recordCount:
                         type: integer
                         format: int32
-                        default: 0
+                        example: 1
                   records:
                     type: array
                     items:
@@ -141,7 +141,7 @@ paths:
                       recordCount:
                         type: integer
                         format: int32
-                        default: 0
+                        example: 1
                   records:
                     type: array
                     items:
@@ -224,6 +224,116 @@ paths:
           description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. A filial especificada não foi localizada.
+  /cargos:
+    summary: Tudo sobre os cargos
+    get:
+      tags:
+      - cargos
+      summary: Obtem uma lista de cargos
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos cargos.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Cargo"
+    post:
+      tags:
+      - cargos
+      summary: Cria um novo cargo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoCargo"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo cargo criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cargo"
+  /cargos/{id}:
+    summary: Detalhes de um cargo
+    get:
+      tags:
+      - cargos
+      summary: Obtém um cargo específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do cargo
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os dados do cargo.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cargo"
+        404:
+          description: Recurso não encontrado. O cargo especificado não foi localizado.
+    put:
+      tags:
+      - cargos
+      summary: Atualiza um cargo específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do cargo
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os novos dados do cargo.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cargo"
+        404:
+          description: Recurso não encontrado. O cargo especificado não foi localizado.
+    delete:
+      tags:
+      - cargos
+      summary: Exclui um cargo específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do cargo
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O cargo especificado não foi localizado.
 components:
   schemas:
     Usuario:
@@ -295,8 +405,13 @@ components:
           type: integer
           format: int32
           example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoCargo"
+    NovoCargo:
+      properties:
         descricao:
           type: string
+          example: "desenvolvedor"
     Funcionario:
       type: object
       properties:
