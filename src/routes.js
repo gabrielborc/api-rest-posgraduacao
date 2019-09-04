@@ -49,14 +49,14 @@ routes.delete('/funcionarios/:id', FuncionarioController.delete.bind(Funcionario
 routes.get('/funcionarios/:idFuncionario/enderecos', FuncionarioEnderecoController.findAll.bind(FuncionarioEnderecoController));
 routes.get('/funcionarios/:idFuncionario/enderecos/:id', FuncionarioEnderecoController.find.bind(FuncionarioEnderecoController));
 routes.post('/funcionarios/:idFuncionario/enderecos', FuncionarioEnderecoController.create.bind(FuncionarioEnderecoController));
-routes.put('/funcionarios/:idFuncionario/enderecos', FuncionarioEnderecoController.update.bind(FuncionarioEnderecoController));
-routes.delete('/funcionarios/:idFuncionario/enderecos', FuncionarioEnderecoController.delete.bind(FuncionarioEnderecoController));
+routes.put('/funcionarios/:idFuncionario/enderecos/:id', FuncionarioEnderecoController.update.bind(FuncionarioEnderecoController));
+routes.delete('/funcionarios/:idFuncionario/enderecos/:id', FuncionarioEnderecoController.delete.bind(FuncionarioEnderecoController));
 
 routes.get('/funcionarios/:idFuncionario/telefones', FuncionarioTelefoneController.findAll.bind(FuncionarioTelefoneController));
 routes.get('/funcionarios/:idFuncionario/telefones/:id', FuncionarioTelefoneController.find.bind(FuncionarioTelefoneController));
 routes.post('/funcionarios/:idFuncionario/telefones', FuncionarioTelefoneController.create.bind(FuncionarioTelefoneController));
-routes.put('/funcionarios/:idFuncionario/telefones', FuncionarioTelefoneController.update.bind(FuncionarioTelefoneController));
-routes.delete('/funcionarios/:idFuncionario/telefones', FuncionarioTelefoneController.delete.bind(FuncionarioTelefoneController));
+routes.put('/funcionarios/:idFuncionario/telefones/:id', FuncionarioTelefoneController.update.bind(FuncionarioTelefoneController));
+routes.delete('/funcionarios/:idFuncionario/telefones/:id', FuncionarioTelefoneController.delete.bind(FuncionarioTelefoneController));
 
 routes.get('/clientes', ClienteController.findAll.bind(ClienteController));
 routes.get('/clientes/:id', ClienteController.find.bind(ClienteController));
@@ -67,14 +67,14 @@ routes.delete('/clientes/:id', ClienteController.delete.bind(ClienteController))
 routes.get('/clientes/:idCliente/enderecos', ClienteEnderecoController.findAll.bind(ClienteEnderecoController));
 routes.get('/clientes/:idCliente/enderecos/:id', ClienteEnderecoController.find.bind(ClienteEnderecoController));
 routes.post('/clientes/:idCliente/enderecos', ClienteEnderecoController.create.bind(ClienteEnderecoController));
-routes.put('/clientes/:idCliente/enderecos', ClienteEnderecoController.update.bind(ClienteEnderecoController));
-routes.delete('/clientes/:idCliente/enderecos', ClienteEnderecoController.delete.bind(ClienteEnderecoController));
+routes.put('/clientes/:idCliente/enderecos/:id', ClienteEnderecoController.update.bind(ClienteEnderecoController));
+routes.delete('/clientes/:idCliente/enderecos/:id', ClienteEnderecoController.delete.bind(ClienteEnderecoController));
 
 routes.get('/clientes/:idCliente/telefones', ClienteTelefoneController.findAll.bind(ClienteTelefoneController));
 routes.get('/clientes/:idCliente/telefones/:id', ClienteTelefoneController.find.bind(ClienteTelefoneController));
 routes.post('/clientes/:idCliente/telefones', ClienteTelefoneController.create.bind(ClienteTelefoneController));
-routes.put('/clientes/:idCliente/telefones', ClienteTelefoneController.update.bind(ClienteTelefoneController));
-routes.delete('/clientes/:idCliente/telefones', ClienteTelefoneController.delete.bind(ClienteTelefoneController));
+routes.put('/clientes/:idCliente/telefones/:id', ClienteTelefoneController.update.bind(ClienteTelefoneController));
+routes.delete('/clientes/:idCliente/telefones/:id', ClienteTelefoneController.delete.bind(ClienteTelefoneController));
 
 routes.get('/fabricantes', FabricanteController.findAll.bind(FabricanteController));
 routes.get('/fabricantes/:id', FabricanteController.find.bind(FabricanteController));
