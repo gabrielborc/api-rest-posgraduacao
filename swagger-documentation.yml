@@ -2,11 +2,101 @@ openapi: "3.0.1"
 info:
   title: RentACar API
   version: v1
+  description: API construída no padrão RESTFul para suprir toda a regra de negócio das aplicações de uma locadora de veículos
 paths:
   /usuarios:
-    summary: A set of usuários
-    
-
+    summary: Tudo sobre os usuários
+    get:
+      tags:
+      - usuarios
+      summary: Obtem uma lista de usuários
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos usuários.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Usuario"
+    post:
+      tags:
+      - usuarios
+      summary: Cria um novo usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoUsuario"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo usuário criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usuario"
+  /usuarios/{id}:
+    summary: Detalhes de um usuário
+    get:
+      tags:
+      - usuarios
+      summary: Obtém um usuário específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do usuário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os dados do usuário.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usuario"
+        404:
+          description: Recurso não encontrado. O usuário especificado não foi localizado.
+    put:
+      tags:
+      - usuarios
+      summary: Atualiza um usuário específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do usuário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os novos dados do usuário.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usuario"
+        404:
+          description: Recurso não encontrado. O usuário especificado não foi localizado.
+    delete:
+      tags:
+      - usuarios
+      summary: Exclui um usuário específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do usuário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O usuário especificado não foi localizado.
 components:
   schemas:
     Usuario:
@@ -15,20 +105,35 @@ components:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoUsuario"
+    NovoUsuario:
+      properties:
         cliente:
-          $ref: "#/components/schemas/Cliente"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
         funcionario:
-          $ref: "#/components/schemas/Funcionario"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
         login:
           type: string
+          example: "antoniodonizete"
         senha:
           type: string
+          example: "12345678910"
         tipoUsuario:
           type: string
+          example: "normal"
         status:
           type: boolean
-          default: true
+          example: true
     Filial:
       type: object
       properties:
