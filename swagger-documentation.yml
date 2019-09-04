@@ -1,0 +1,318 @@
+openapi: "3.0.1"
+info:
+  title: RentACar API
+  version: v1
+paths:
+  /usuarios:
+    summary: A set of usuários
+    
+
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        cliente:
+          $ref: "#/components/schemas/Cliente"
+        funcionario:
+          $ref: "#/components/schemas/Funcionario"
+        login:
+          type: string
+        senha:
+          type: string
+        tipoUsuario:
+          type: string
+        status:
+          type: boolean
+          default: true
+    Filial:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        descricao:
+          type: string
+        rua:
+          type: string
+        numero:
+          type: integer
+          format: int32
+        cidade:
+          type: string
+        uf:
+          type: string
+    Cargo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        descricao:
+          type: string
+    Funcionario:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        cargo:
+          $ref: "#/components/schemas/Cargo"
+        filial:
+          $ref: "#/components/schemas/Filial"
+        nome:
+          type: string
+        cnh:
+          type: string
+        tipoCnh:
+          type: string
+    FuncionarioEndereco:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        idFuncionario:
+          type: integer
+          format: int32
+          default: 1
+        rua:
+          type: string
+        numero:
+          type: integer
+          format: int32
+        bairro:
+          type: string
+        cidade:
+          type: string
+        uf:
+          type: string
+    FuncionarioTelefone:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        idFuncionario:
+          type: integer
+          format: int32
+          default: 1
+        ddd:
+          type: string
+        numero:
+          type: string
+        tipo:
+          type: string
+    Cliente:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        nome:
+          type: string
+        cnh:
+          type: string
+        tipoCnh:
+          type: string
+    ClienteEndereco:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        idCliente:
+          type: integer
+          format: int32
+          default: 1
+        rua:
+          type: string
+        numero:
+          type: integer
+          format: int32
+        bairro:
+          type: string
+        cidade:
+          type: string
+        uf:
+          type: string
+    ClienteTelefone:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        idCliente:
+          type: integer
+          format: int32
+          default: 1
+        ddd:
+          type: string
+        numero:
+          type: string
+        tipo:
+          type: string
+    Fabricante:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        descricao:
+          type: string
+    Modelo:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        descricao:
+          type: string
+        fabricante:
+          $ref: "#/components/schemas/Fabricante"
+    Classe:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        descricao:
+          type: string
+    Tanque:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        descricao:
+          type: string
+    Carro:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        classe:
+          $ref: "#/components/schemas/Classe"
+        fabricante:
+          $ref: "#/components/schemas/Fabricante"
+        modelo:
+          $ref: "#/components/schemas/Modelo"
+        filial:
+          $ref: "#/components/schemas/Filial"
+    Preco:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        idFilial:
+          type: integer
+          format: int32
+          default: 1
+        classe:
+          $ref: "#/components/schemas/Classe"
+        valorDia:
+          type: number
+          format: double
+        valorUmaSemana:
+          type: number
+          format: double
+        valorDuasSemanas:
+          type: number
+          format: double
+        valorMes:
+          type: number
+          format: double
+        taxaDevolucao:
+          type: number
+          format: double
+        percentualDesconto:
+          type: integer
+          format: int32
+    Aluguel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          default: 1
+        carro:
+          $ref: "#/components/schemas/Carro"
+        cliente:
+          $ref: "#/components/schemas/Cliente"
+        funcionario:
+          $ref: "#/components/schemas/Funcionario"
+        filialRetirada:
+          $ref: "#/components/schemas/Filial"
+        filialDevolucao:
+          $ref: "#/components/schemas/Filial"
+        dataRetirada:
+          type: string
+          format: date
+        dataDevolucao:
+          type: string
+          format: date
+        valor:
+          type: number
+          format: double
+    AluguelRetirada:
+      type: object
+      properties:
+        idAluguel:
+          type: integer
+          format: int32
+        odometro:
+          type: string
+        dataEntrega:
+          type: string
+          format: date
+    AluguelDevolucao:
+      type: object
+      properties:
+        idAluguel:
+          type: integer
+          format: int32
+        odometro:
+          type: string
+        dataEntrega:
+          type: string
+          format: date
+        tanque:
+          $ref: "#/components/schemas/Tanque"
+    ApiResponseGetAll:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            offset:
+              type: integer
+              format: int32
+              default: 0
+            limit:
+              type: integer
+              format: int32
+              default: 0
+            recordCount:
+              type: integer
+              format: int32
+              default: 0
