@@ -1442,149 +1442,251 @@ components:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoFabricante"
+    NovoFabricante:
+      properties:
         descricao:
           type: string
+          example: "hyundai"
     Modelo:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoModelo"
+    NovoModelo:
+      properties:
         descricao:
           type: string
         fabricante:
-          $ref: "#/components/schemas/Fabricante"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            descricao:
+              type: string
+              example: "hyundai"
     Classe:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovaClasse"
+    NovaClasse:
+      properties:
         descricao:
           type: string
+          example: "populares"
     Tanque:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoTanque"
+    NovoTanque:
+      properties:
         descricao:
           type: string
+          example: "cheio"
     Carro:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoCarro"
+    NovoCarro:
+      properties:
+        ano:
+          type: integer
+          format: int32
+          example: 2010
+        placa:
+          type: string
+          example: "QUW-6357"
         classe:
-          $ref: "#/components/schemas/Classe"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            descricao:
+              type: string
+              example: "subcompactos"
         fabricante:
-          $ref: "#/components/schemas/Fabricante"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            descricao:
+              type: string
+              example: "hyundai"
         modelo:
-          $ref: "#/components/schemas/Modelo"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            descricao:
+              type: string
+              example: "hb20"
         filial:
-          $ref: "#/components/schemas/Filial"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            descricao:
+              type: string
+              example: "filial norestepaulista"
     Preco:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoPreco"
+    NovoPreco:
+      properties:
         idFilial:
           type: integer
           format: int32
-          default: 1
+          example: 1
         classe:
-          $ref: "#/components/schemas/Classe"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
         valorDia:
           type: number
           format: double
+          example: 57.0
         valorUmaSemana:
           type: number
           format: double
+          example: 309.0
         valorDuasSemanas:
           type: number
           format: double
+          example: 567.0
         valorMes:
           type: number
           format: double
+          example: 1012.0
         taxaDevolucao:
           type: number
           format: double
+          example: 37.0
         percentualDesconto:
           type: integer
           format: int32
+          example: 0
     Aluguel:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoAluguel"
+    NovoAluguel:
+      properties:
         carro:
-          $ref: "#/components/schemas/Carro"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
         cliente:
-          $ref: "#/components/schemas/Cliente"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
         funcionario:
-          $ref: "#/components/schemas/Funcionario"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: null
         filialRetirada:
-          $ref: "#/components/schemas/Filial"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
         filialDevolucao:
-          $ref: "#/components/schemas/Filial"
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
         dataRetirada:
           type: string
           format: date
+          example: "12/08/2019"
         dataDevolucao:
           type: string
           format: date
-        valor:
-          type: number
-          format: double
+          example: "19/08/2019"
     AluguelRetirada:
       type: object
       properties:
         idAluguel:
           type: integer
           format: int32
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovaRetiradaAluguel"
+    NovaRetiradaAluguel:
+      properties:
         odometro:
           type: string
-        dataEntrega:
+          example: "10.500 KM"
+        dataRetirada:
           type: string
           format: date
+          example: "13/09/2019"
     AluguelDevolucao:
       type: object
       properties:
         idAluguel:
           type: integer
           format: int32
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovaDevolucaoAluguel"
+    NovaDevolucaoAluguel:
+      properties:
         odometro:
           type: string
+          example: "10.632 KM"
         dataEntrega:
           type: string
           format: date
+          example: "15/09/2019"
         tanque:
-          $ref: "#/components/schemas/Tanque"
-    ApiResponseGetAll:
-      type: object
-      properties:
-        meta:
           type: object
           properties:
-            offset:
+            id:
               type: integer
-              format: int32
-              default: 0
-            limit:
-              type: integer
-              format: int32
-              default: 0
-            recordCount:
-              type: integer
-              format: int32
-              default: 0
+              example: 1
