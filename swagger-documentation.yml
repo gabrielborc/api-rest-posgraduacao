@@ -1654,6 +1654,122 @@ paths:
           description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. O tanque especificado não foi localizado.
+  /carros:
+    summary: Tudo sobre os carros
+    get:
+      tags:
+      - carros
+      summary: Obtem uma lista de carros
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos carros.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Carro"
+    post:
+      tags:
+      - carros
+      summary: Cria um novo carro
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoCarro"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo carro criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carro"
+  /carros/{id}:
+    summary: Detalhes de um carro
+    get:
+      tags:
+      - carros
+      summary: Obtém um carro específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do carro
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os dados do carro.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carro"
+        404:
+          description: Recurso não encontrado. O carro especificado não foi localizado.
+    put:
+      tags:
+      - carros
+      summary: Atualiza um carro específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do carro
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoCarro"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os novos dados do carro.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Carro"
+        404:
+          description: Recurso não encontrado. O carro especificado não foi localizado.
+    delete:
+      tags:
+      - carros
+      summary: Exclui um carro específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do carro
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O carro especificado não foi localizado.
 components:
   schemas:
     Usuario:
