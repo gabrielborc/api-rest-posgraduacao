@@ -1190,6 +1190,122 @@ paths:
           description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. O cliente e/ou telefone especificados não foram localizados.
+  /fabricantes:
+    summary: Tudo sobre os fabricantes
+    get:
+      tags:
+      - fabricantes
+      summary: Obtem uma lista de fabricantes
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos fabricantes.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Fabricante"
+    post:
+      tags:
+      - fabricantes
+      summary: Cria um novo fabricante
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoFabricante"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo fabricante criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Fabricante"
+  /fabricantes/{id}:
+    summary: Detalhes de um fabricante
+    get:
+      tags:
+      - fabricantes
+      summary: Obtém um fabricante específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do fabricante
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os dados do fabricante.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Fabricante"
+        404:
+          description: Recurso não encontrado. O fabricante especificado não foi localizado.
+    put:
+      tags:
+      - fabricantes
+      summary: Atualiza um fabricante específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do fabricante
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoFabricante"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os novos dados do fabricante.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Fabricante"
+        404:
+          description: Recurso não encontrado. O fabricante especificado não foi localizado.
+    delete:
+      tags:
+      - fabricantes
+      summary: Exclui um fabricante específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do fabricante
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O fabricante especificado não foi localizado.
 components:
   schemas:
     Usuario:
