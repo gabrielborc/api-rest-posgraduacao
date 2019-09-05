@@ -1,8 +1,14 @@
-openapi: "3.0.1"
+openapi: "3.0.0"
 info:
   title: RentACar API
   version: v1
   description: API construída no padrão RESTFul para suprir toda a regra de negócio das aplicações de uma locadora de veículos
+  contact:
+    name: Equipe RentACar
+    email: contato@rentacar.com.br
+    url: https://rentacar.com.br
+servers: 
+  - url: https://api.rentacar.com.br
 paths:
   /usuarios:
     summary: Tudo sobre os usuários
@@ -2846,3 +2852,4 @@ components:
             id:
               type: integer
               example: 1
+      
