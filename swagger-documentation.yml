@@ -1538,6 +1538,122 @@ paths:
           description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. A classe especificada não foi localizada.
+  /tanques:
+    summary: Tudo sobre os tanques
+    get:
+      tags:
+      - tanques
+      summary: Obtem uma lista de tanques
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos tanques.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Tanque"
+    post:
+      tags:
+      - tanques
+      summary: Cria um novo tanque
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoTanque"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo tanque criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tanque"
+  /tanques/{id}:
+    summary: Detalhes de um tanque
+    get:
+      tags:
+      - tanques
+      summary: Obtém um tanque específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do tanque
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os dados do tanque.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tanque"
+        404:
+          description: Recurso não encontrado. O tanque especificado não foi localizado.
+    put:
+      tags:
+      - tanques
+      summary: Atualiza um tanque específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do tanque
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoTanque"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os novos dados do tanque.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tanque"
+        404:
+          description: Recurso não encontrado. O tanque especificado não foi localizado.
+    delete:
+      tags:
+      - tanques
+      summary: Exclui um tanque específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do tanque
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O tanque especificado não foi localizado.
 components:
   schemas:
     Usuario:
