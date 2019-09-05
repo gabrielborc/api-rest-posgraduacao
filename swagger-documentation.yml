@@ -1422,6 +1422,122 @@ paths:
           description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. O modelo especificado não foi localizado.
+  /classes:
+    summary: Tudo sobre as classes
+    get:
+      tags:
+      - classes
+      summary: Obtem uma lista de classes
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados das classes.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Classe"
+    post:
+      tags:
+      - classes
+      summary: Cria uma nova classe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovaClasse"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados da nova classe criada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Classe"
+  /classes/{id}:
+    summary: Detalhes de uma classe
+    get:
+      tags:
+      - classes
+      summary: Obtém uma classe específica
+      parameters:
+        - in: path
+          name: id
+          description: ID da classe
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os dados da classe.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Classe"
+        404:
+          description: Recurso não encontrado. A classe especificada não foi localizada.
+    put:
+      tags:
+      - classes
+      summary: Atualiza uma classe específica
+      parameters:
+        - in: path
+          name: id
+          description: ID da classe
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovaClasse"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os novos dados da classe.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Classe"
+        404:
+          description: Recurso não encontrado. A classe especificada não foi localizada.
+    delete:
+      tags:
+      - classes
+      summary: Exclui uma classe específica
+      parameters:
+        - in: path
+          name: id
+          description: ID da classe
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. A classe especificada não foi localizada.
 components:
   schemas:
     Usuario:
