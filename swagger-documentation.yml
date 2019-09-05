@@ -236,6 +236,159 @@ paths:
           description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. A filial especificada não foi localizada.
+  /filiais/{filialId}/precos:
+    summary: Tudo sobre os preços de uma filial
+    get:
+      tags:
+      - filiais
+      summary: Obtem uma lista de preços de uma filial
+      parameters:
+        - in: path
+          name: filialId
+          description: ID da filial
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornada a lista de objetos que contém os dados dos preços da filial.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Preco"
+    post:
+      tags:
+      - filiais
+      summary: Cria um novo preço para a filial especificada
+      parameters:
+        - in: path
+          name: filialId
+          description: ID da filial
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoPreco"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo preço criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Preco"
+  /filiais/{filialId}/precos/{id}:
+    summary: Detalhes de um preço de uma filial
+    get:
+      tags:
+      - filiais
+      summary: Obtém um preço específico de uma filial específica
+      parameters:
+        - in: path
+          name: filialId
+          description: ID da filial
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do preço da filial
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o preço especificado da filial.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Preco"
+        404:
+          description: Recurso não encontrado. A filial e/ou preço especificados não foram localizados.
+    put:
+      tags:
+      - filiais
+      summary: Atualiza o preço específico de uma filial específica
+      parameters:
+        - in: path
+          name: filialId
+          description: ID da filial
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do preço da filial
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoPreco"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o preço atualizado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Preco"
+        404:
+          description: Recurso não encontrado. A filial e/ou preço especificados não foram localizados.
+    delete:
+      tags:
+      - filiais
+      summary: Exclui um preço específico de uma filial especifica
+      parameters:
+        - in: path
+          name: filialId
+          description: ID da filial
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do preço da filial
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. A filial e/ou preço especificados não foram localizados.
   /cargos:
     summary: Tudo sobre os cargos
     get:
