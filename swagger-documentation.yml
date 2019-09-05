@@ -1923,6 +1923,428 @@ paths:
           description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. O carro especificado não foi localizado.
+  /alugueis:
+    summary: Tudo sobre os aluguéis
+    get:
+      tags:
+      - alugueis
+      summary: Obtem uma lista de aluguéis
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos aluguéis.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Aluguel"
+    post:
+      tags:
+      - alugueis
+      summary: Cria um novo aluguel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoAluguel"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo aluguel criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Aluguel"
+  /alugueis/{id}:
+    summary: Detalhes de um aluguel
+    get:
+      tags:
+      - alugueis
+      summary: Obtém um aluguel específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os dados do aluguel.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Aluguel"
+        404:
+          description: Recurso não encontrado. O aluguel especificado não foi localizado.
+    put:
+      tags:
+      - alugueis
+      summary: Atualiza um aluguel específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoAluguel"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado os novos dados do aluguel.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Aluguel"
+        404:
+          description: Recurso não encontrado. O aluguel especificado não foi localizado.
+    delete:
+      tags:
+      - alugueis
+      summary: Exclui um aluguel específico
+      parameters:
+        - in: path
+          name: id
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O aluguel especificado não foi localizado.
+  /alugueis/{aluguelId}/retiradas:
+    summary: Tudo sobre as retiradas dos aluguéis
+    get:
+      tags:
+      - alugueis
+      summary: Obtem uma lista de retiradas de um aluguel
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados das retiradas de um aluguel.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/AluguelRetirada"
+    post:
+      tags:
+      - alugueis
+      summary: Cria uma nova retirada para um aluguel específico
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovaRetiradaAluguel"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados da nova retirada criada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AluguelRetirada"
+  /alugueis/{aluguelId}/retiradas/{id}:
+    summary: Detalhes de uma retirada de um aluguel
+    get:
+      tags:
+      - alugueis
+      summary: Obtém uma retirada específica de um aluguel específico
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID da retirada do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornada a retirada do aluguel.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AluguelRetirada"
+        404:
+          description: Recurso não encontrado. O aluguel e/ou retirada especificados não foram localizados.
+    put:
+      tags:
+      - alugueis
+      summary: Atualiza uma retirada específica de um aluguel específico
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID da retirada do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovaRetiradaAluguel"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornada a retirada atualizada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AluguelRetirada"
+        404:
+          description: Recurso não encontrado. O aluguel e/ou retirada especificados não foram localizados.
+    delete:
+      tags:
+      - alugueis
+      summary: Exclui uma retirada específica de um aluguel específico
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID da retirada do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O aluguel e/ou retirada especificados não foram localizados.
+  /alugueis/{aluguelId}/devolucoes:
+    summary: Tudo sobre as devoluções dos aluguéis
+    get:
+      tags:
+      - alugueis
+      summary: Obtem uma lista de devoluções de um aluguel
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados das devoluções de um aluguel.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/AluguelDevolucao"
+    post:
+      tags:
+      - alugueis
+      summary: Cria uma nova devolução para um aluguel específico
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovaDevolucaoAluguel"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados da nova devolução criada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AluguelDevolucao"
+  /alugueis/{aluguelId}/devolucoes/{id}:
+    summary: Detalhes de uma devolução de um aluguel
+    get:
+      tags:
+      - alugueis
+      summary: Obtém uma devolução específica de um aluguel específico
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID da devolução do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornada a devolução do aluguel.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AluguelDevolucao"
+        404:
+          description: Recurso não encontrado. O aluguel e/ou devolução especificados não foram localizados.
+    put:
+      tags:
+      - alugueis
+      summary: Atualiza uma devolução específica de um aluguel específico
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID da devolução do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovaDevolucaoAluguel"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornada a devolução atualizada.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AluguelDevolucao"
+        404:
+          description: Recurso não encontrado. O aluguel e/ou devolução especificados não foram localizados.
+    delete:
+      tags:
+      - alugueis
+      summary: Exclui uma devolução específica de um aluguel específico
+      parameters:
+        - in: path
+          name: aluguelId
+          description: ID do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID da devolução do aluguel
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O aluguel e/ou devolução especificados não foram localizados.
 components:
   schemas:
     Usuario:
