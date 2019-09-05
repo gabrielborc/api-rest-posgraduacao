@@ -88,6 +88,12 @@ paths:
           schema:
             type: integer
             format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoUsuario"
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado os novos dados do usuário.
@@ -198,6 +204,12 @@ paths:
           schema:
             type: integer
             format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovaFilial"
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado os novos dados da filial.
@@ -308,6 +320,12 @@ paths:
           schema:
             type: integer
             format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoCargo"
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado os novos dados do cargo.
@@ -418,6 +436,12 @@ paths:
           schema:
             type: integer
             format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoFuncionario"
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado os novos dados do funcionário.
@@ -487,7 +511,7 @@ paths:
     post:
       tags:
       - funcionarios
-      summary: Cria um novo endereço para o usuário especificado
+      summary: Cria um novo endereço para o funcionário especificado
       parameters:
         - in: path
           name: funcionarioId
@@ -539,6 +563,64 @@ paths:
                 $ref: "#/components/schemas/FuncionarioEndereco"
         404:
           description: Recurso não encontrado. O funcionário e/ou endereço especificados não foram localizados.
+    put:
+      tags:
+      - funcionarios
+      summary: Atualiza o endereço específico de um funcionário específico
+      parameters:
+        - in: path
+          name: funcionarioId
+          description: ID do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do endereço do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoEnderecoFuncionario"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o endereço atualizado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FuncionarioEndereco"
+        404:
+          description: Recurso não encontrado. O funcionário e/ou endereço especificados não foram localizados.
+    delete:
+      tags:
+      - funcionarios
+      summary: Exclui um endereço específico de um funcionário específico
+      parameters:
+        - in: path
+          name: funcionarioId
+          description: ID do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do endereço do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O funcionário e/ou endereço especificados não foram localizados.
   /funcionarios/{funcionarioId}/telefones:
     summary: Tudo sobre os telefones dos funcionários
     get:
@@ -582,7 +664,7 @@ paths:
     post:
       tags:
       - funcionarios
-      summary: Cria um novo telefone para o usuário especificado
+      summary: Cria um novo telefone para o funcionário especificado
       parameters:
         - in: path
           name: funcionarioId
@@ -632,6 +714,64 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FuncionarioTelefone"
+        404:
+          description: Recurso não encontrado. O funcionário e/ou telefone especificados não foram localizados.
+    put:
+      tags:
+      - funcionarios
+      summary: Atualiza o telefone específico de um funcionário específico
+      parameters:
+        - in: path
+          name: funcionarioId
+          description: ID do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do telefone do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoTelefoneFuncionario"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o telefone atualizado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FuncionarioTelefone"
+        404:
+          description: Recurso não encontrado. O funcionário e/ou telefone especificados não foram localizados.
+    delete:
+      tags:
+      - funcionarios
+      summary: Exclui um telefone específico de um funcionário específico
+      parameters:
+        - in: path
+          name: funcionarioId
+          description: ID do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do telefone do funcionário
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. O funcionário e/ou telefone especificados não foram localizados.
   /clientes:
@@ -744,6 +884,312 @@ paths:
           description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
         404:
           description: Recurso não encontrado. O cliente especificado não foi localizado.
+  /clientes/{clienteId}/enderecos:
+    summary: Tudo sobre os endereços dos clientes
+    get:
+      tags:
+      - clientes
+      summary: Obtem uma lista de endereços de um cliente
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos endereços do cliente.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ClienteEndereco"
+    post:
+      tags:
+      - clientes
+      summary: Cria um novo endereço para o cliente especificado
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoEnderecoCliente"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo endereço criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClienteEndereco"
+  /clientes/{clienteId}/enderecos/{id}:
+    summary: Detalhes de um endereço de um cliente
+    get:
+      tags:
+      - clientes
+      summary: Obtém um endereço específico de um cliente específico
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do endereço do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o endereço especificado do cliente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClienteEndereco"
+        404:
+          description: Recurso não encontrado. O cliente e/ou endereço especificados não foram localizados.
+    put:
+      tags:
+      - clientes
+      summary: Atualiza o endereço específico de um cliente específico
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do endereço do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoEnderecoCliente"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o endereço atualizado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClienteEndereco"
+        404:
+          description: Recurso não encontrado. O cliente e/ou endereço especificados não foram localizados.
+    delete:
+      tags:
+      - clientes
+      summary: Exclui um endereço específico de um cliente específico
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do endereço do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O cliente e/ou endereço especificados não foram localizados.
+  /clientes/{clienteId}/telefones:
+    summary: Tudo sobre os telefones dos clientes
+    get:
+      tags:
+      - clientes
+      summary: Obtem uma lista de telefones de um cliente
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os telefones do cliente.
+          content:
+            application/json:
+              schema:
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      offset:
+                        type: integer
+                        format: int32
+                        default: 0
+                      limit:
+                        type: integer
+                        format: int32
+                        default: 0
+                      recordCount:
+                        type: integer
+                        format: int32
+                        example: 1
+                  records:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ClienteTelefone"
+    post:
+      tags:
+      - clientes
+      summary: Cria um novo telefone para o cliente especificado
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoTelefoneCliente"
+      responses:
+        201:
+          description: Operação concluída com sucesso. Então é retornado os dados do novo telefone criado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClienteTelefone"
+  /clientes/{clienteId}/telefones/{id}:
+    summary: Detalhes de um telefone de um cliente
+    get:
+      tags:
+      - clientes
+      summary: Obtém um telefone específico de um cliente específico
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do telefone do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o telefone especificado do cliente.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClienteTelefone"
+        404:
+          description: Recurso não encontrado. O cliente e/ou telefone especificados não foram localizados.
+    put:
+      tags:
+      - clientes
+      summary: Atualiza o telefone específico de um cliente específico
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do telefone do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NovoTelefoneCliente"
+      responses:
+        200:
+          description: Operação concluída com sucesso. Então é retornado o telefone atualizado.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClienteTelefone"
+        404:
+          description: Recurso não encontrado. O cliente e/ou telefone especificados não foram localizados.
+    delete:
+      tags:
+      - clientes
+      summary: Exclui um telefone específico de um cliente específico
+      parameters:
+        - in: path
+          name: clienteId
+          description: ID do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - in: path
+          name: id
+          description: ID do telefone do cliente
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        204:
+          description: Operação concluída com sucesso e nenhuma informação é retornada no response body.
+        404:
+          description: Recurso não encontrado. O cliente e/ou telefone especificados não foram localizados.
 components:
   schemas:
     Usuario:
@@ -941,39 +1387,55 @@ components:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoEnderecoCliente"
+    NovoEnderecoCliente:
+      properties:
         idCliente:
           type: integer
           format: int32
-          default: 1
+          example: 1
         rua:
           type: string
+          example: "R. Juaquim Fernandes"
         numero:
           type: integer
           format: int32
+          example: 788
         bairro:
           type: string
+          example: "Santa Luzia"
         cidade:
           type: string
+          example: "Franca"
         uf:
           type: string
+          example: "SP"
     ClienteTelefone:
       type: object
       properties:
         id:
           type: integer
           format: int32
-          default: 1
+          example: 1
+      allOf:
+        - $ref: "#/components/schemas/NovoTelefoneCliente"
+    NovoTelefoneCliente:
+      properties:
         idCliente:
           type: integer
           format: int32
-          default: 1
+          example: 1
         ddd:
           type: string
+          example: "015"
         numero:
           type: string
+          example: "98484-9595"
         tipo:
           type: string
+          example: "comercial"
     Fabricante:
       type: object
       properties:
