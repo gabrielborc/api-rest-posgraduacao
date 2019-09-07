@@ -16,6 +16,43 @@ paths:
       tags:
       - usuarios
       summary: Obtem uma lista de usuários
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=login,status
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=login
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?tipoUsuario_in=normal
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?login_contains=joao
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos usuários.
@@ -132,6 +169,43 @@ paths:
       tags:
       - filiais
       summary: Obtem uma lista de filiais
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=rua,numero
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=rua
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?cidade_in=Franca
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?descricao_contains=Central
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados das filiais.
@@ -256,6 +330,42 @@ paths:
           schema:
             type: integer
             format: int32
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=taxaDevolucao,valorDia,valorMes
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=percentualDesconto
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?percentualDesconto_in=30
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?valorUmaSemana_contains=800
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornada a lista de objetos que contém os dados dos preços da filial.
@@ -401,6 +511,43 @@ paths:
       tags:
       - cargos
       summary: Obtem uma lista de cargos
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=descricao
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=descricao
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?descricao_in=motorista
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?descricao_contains=admini
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos cargos.
@@ -517,6 +664,43 @@ paths:
       tags:
       - funcionarios
       summary: Obtem uma lista de funcionários
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=cnh,tipoCnh
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=nome
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?tipoCnh_in=AB
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?nome_contains=Maria
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos funcionários.
@@ -641,6 +825,42 @@ paths:
           schema:
             type: integer
             format: int32
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=idFuncionario,cidade,uf
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=cidade
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?uf_in=SP
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?rua_contains=Benedito
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos endereços do funcionário.
@@ -794,6 +1014,42 @@ paths:
           schema:
             type: integer
             format: int32
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=ddd,numero
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=tipo
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?tipo_in=Comercial
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?numero_contains=7899
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os telefones do funcionário.
@@ -939,6 +1195,43 @@ paths:
       tags:
       - clientes
       summary: Obtem uma lista de clientes
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=nome,cnh
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=tipoCnh
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?tipoCnh_in=A
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?nome_contains=Felipe
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos clientes.
@@ -1057,6 +1350,42 @@ paths:
           schema:
             type: integer
             format: int32
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=idCliente,cidade,uf
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=cidade
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?uf_in=SP
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?rua_contains=Benedito
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos endereços do cliente.
@@ -1210,6 +1539,42 @@ paths:
           schema:
             type: integer
             format: int32
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=ddd,numero
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=tipo
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?tipo_in=Comercial
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?numero_contains=7899
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os telefones do cliente.
@@ -1355,6 +1720,43 @@ paths:
       tags:
       - fabricantes
       summary: Obtem uma lista de fabricantes
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=descricao
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=descricao
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?descricao_in=ford
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?descricao_contains=hyu
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos fabricantes.
@@ -1471,6 +1873,43 @@ paths:
       tags:
       - modelos
       summary: Obtem uma lista de modelos
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=descricao
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=descricao
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?descricao_in=hb20
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?descricao_contains=fies
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos modelos.
@@ -1587,6 +2026,43 @@ paths:
       tags:
       - classes
       summary: Obtem uma lista de classes
+      parameters: 
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=descricao
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=descricao
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?descricao_in=compactos
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?descricao_contains=subcomp
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados das classes.
@@ -1703,6 +2179,43 @@ paths:
       tags:
       - tanques
       summary: Obtem uma lista de tanques
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=descricao
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=descricao
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?descricao_in=vazio
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?descricao_contains=metade
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos tanques.
@@ -1819,6 +2332,43 @@ paths:
       tags:
       - carros
       summary: Obtem uma lista de carros
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=ano,placa,cor
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=ano
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?reservado_in=true
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?placa_contains=QEW
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos carros.
@@ -1935,6 +2485,43 @@ paths:
       tags:
       - alugueis
       summary: Obtem uma lista de aluguéis
+      parameters:
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=dataRetirada,dataDevolucao
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=valor
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?dataRetirada_in=12/09/2019
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?valor_contains=100
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados dos aluguéis.
@@ -2059,6 +2646,42 @@ paths:
           schema:
             type: integer
             format: int32
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=odometro
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=dataRetirada
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?idAluguel_in=2
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?odometro_contains=10.000
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados das retiradas de um aluguel.
@@ -2212,6 +2835,42 @@ paths:
           schema:
             type: integer
             format: int32
+        - in: query
+          name: limit
+          description: A quantidade de itens a serem obtidos
+          schema:
+            type: integer
+            example: ?limit=20
+        - in: query
+          name: offset
+          description: O número de itens a serem ignorados antes de começar a obter um conjunto de dados
+          schema:
+            type: integer
+            example: ?offset=5
+        - in: query
+          name: fields
+          description: Apenas os campos que devem ser listados no retorno dos dados
+          schema:
+            type: string
+            example: ?fields=odometro,dataEntrega
+        - in: query
+          name: sort
+          description: Ordenar os campos por ordem crescente (+) ou decrescente (-) ou por um campo
+          schema:
+            type: string
+            example: ?sort=+id ou sort=-id ou sort=dataEntrega
+        - in: query
+          name: _in
+          description: Consulta por um conjunto de valores separados por vírgula
+          schema:
+            type: string
+            example: ?idAluguel_in=2
+        - in: query
+          name: _contains
+          description: Consulta por equiparação com a informação passada
+          schema:
+            type: string
+            example: ?odometro_contains=11.123
       responses:
         200:
           description: Operação concluída com sucesso. Então é retornado a lista de objetos que contém os dados das devoluções de um aluguel.
@@ -2852,4 +3511,15 @@ components:
             id:
               type: integer
               example: 1
-      
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: Esta API usa OAuth 2 como token de autenticação.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+            admin: Grants access to admin operations
