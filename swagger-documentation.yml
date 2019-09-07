@@ -8,7 +8,7 @@ info:
     email: contato@rentacar.com.br
     url: https://rentacar.com.br
 servers: 
-  - url: https://api.rentacar.com.br
+  - url: https://gabrielborc-eval-test.apigee.net/v1/rentacar/
 paths:
   /usuarios:
     summary: Tudo sobre os usuários
@@ -3517,9 +3517,9 @@ components:
       description: Esta API usa OAuth 2 como token de autenticação.
       flows:
         authorizationCode:
-          authorizationUrl: https://example.com/oauth/authorize
-          tokenUrl: https://example.com/oauth/token
+          authorizationUrl: https://gabrielborc-eval-test.apigee.net/v1/rentacar/authorize
+          tokenUrl: https://gabrielborc-eval-test.apigee.net/v1/rentacar/token
           scopes:
-            read: Grants read access
-            write: Grants write access
-            admin: Grants access to admin operations
+            read: Garante acesso para leitura
+            write: Garante acesso para escritura
+            admin: Garante acesso para configurações de administrador
