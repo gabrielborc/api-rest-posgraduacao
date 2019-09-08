@@ -4,8 +4,8 @@ Consulta por data:
     _lesser
 
 Consulta por um conjuto de valores: - Feito
-    _in
-    _contains
+    (campo)_in
+    (campo)_contains
 
 Ordenação: - Feito
     sort=(+/-)campo

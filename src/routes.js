@@ -22,6 +22,10 @@ const AluguelDevolucaoController = require('./app/controllers/AluguelDevolucaoCo
 
 const routes = new Router();
 
+routes.get('/', (req, res) => {
+    res.sendFile('app/view/documentation/index.html', {root: __dirname });
+});
+
 routes.get('/usuarios', UsuarioController.findAll.bind(UsuarioController));
 routes.get('/usuarios/:id', UsuarioController.find.bind(UsuarioController));
 routes.post('/usuarios', UsuarioController.create.bind(UsuarioController));
