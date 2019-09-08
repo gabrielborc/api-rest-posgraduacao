@@ -3517,8 +3517,8 @@ components:
       description: Esta API usa OAuth 2 como token de autenticação.
       flows:
         authorizationCode:
-          authorizationUrl: https://gabrielborc-eval-test.apigee.net/v1/rentacar/authorize
-          tokenUrl: https://gabrielborc-eval-test.apigee.net/v1/rentacar/token
+          authorizationUrl: https://gabrielborc-eval-test.apigee.net/oauth/client_credential/accesstoken?grant_type=client_credentials
+          tokenUrl: https://gabrielborc-eval-test.apigee.net/oauth/client_credential/accesstoken?grant_type=client_credentials
           scopes:
             read: Garante acesso para leitura
             write: Garante acesso para escritura
