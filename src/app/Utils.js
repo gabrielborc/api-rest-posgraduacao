@@ -72,8 +72,7 @@ class Utils {
     paginate(params, mock) {
         let limit = parseInt(params.limit) || 5;
         let offset = parseInt(params.offset) || 0;
-        let limitAdjustment = offset > 0 ? 1 : 0;
-        let mockPaginate = [ ...mock ].slice(offset, (limit + limitAdjustment));
+        let mockPaginate = [ ...mock ].slice(offset, (limit + offset));
 
         return {
             "meta": {
